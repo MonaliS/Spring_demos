@@ -1,0 +1,13 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+ <beans>
+ <bean id="bus" class="com.monali.serviceImpl.Bus">
+ 	<property name="maxSpeed" value="200"></property>
+ 	<property name="fuelType" value="petrol"></property>
+ </bean>
+ 
+ <bean id="car" class="com.monali.serviceImpl.Car">
+ 	<property name="maxSpeed" value="300"></property>
+ </bean>
+ 
+ </beans>
