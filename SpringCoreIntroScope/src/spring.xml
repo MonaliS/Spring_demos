@@ -1,0 +1,47 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+ <beans>
+	<!-- Setter type dependency injection -->
+	<!-- here student is object...if it is of primitive type, instead of ref 
+		tag we have to use value tag. 
+	-->
+	<!-- one more way to bind student object inside course....by using autowiring 
+		Autowiring works only for object types and not for primitive types... autowire 
+		has two types bytype and byname....bytype is used if unique type of object 
+		is to be configured in that case bean id's of bean is not mandatory to match 
+		to names of variables in class. but in case of byname autowiring happens 
+		by matching names of variables to id's of bean 
+	-->
+	<!-- init-method and destoy-method tags for calling methods after initializing and
+	     before destroying beans. if all beans has same named init-methods and destroy-methods
+	     then its configuration is done globally in beans tag instad of doing for every bean
+	-->
+ 		<bean id="javaCourse" class='com.monali.JavaCourse' autowire="byName" init-method="myInit" destroy-method="cleanUp">
+ 			<!-- <property name="student1" ref="student1"></property>
+ 			<property name="student2" ref="student2"></property>-->
+ 		</bean>
+
+	<!-- Constructor argument dependency injection ....order in which arg configured 
+		should match to order defined in constructor definition 
+	-->
+ 	
+ 		<bean id="student1" class="com.monali.Student">
+			<constructor-arg value="monali"></constructor-arg>
+			<constructor-arg value="7"></constructor-arg>
+		</bean>
+
+		<bean id="student2" class="com.monali.Student">
+			<constructor-arg value="Apurva"></constructor-arg>
+			<constructor-arg value="10"></constructor-arg>
+		</bean>
+ 	
+ 	<!-- by using alias tag we can give multiple ids to one bean -->
+ 		<alias name="javaCourse" alias="javaCourse-alias"></alias>
+ 		
+ 	<!-- JavaCourseBeanPostProcessor implements BeanPostProcessor which has two
+ 	     methods which are called before initializing and after initializing 
+ 	     every bean of xml file
+ 	 -->	
+ 		<bean class="com.monali.JavaCourseBeanPostProcessor"></bean>
+ </beans>
